@@ -1,59 +1,69 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-	<title>Loan Calculator</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>User's Name - Resume and Blog</title>
+	<link rel="stylesheet" href="style.css">
 </head>
 <body>
 	<header>
-		<h1>Loan Calculator</h1>
+		<nav>
+			<ul>
+				<li><a href="#about">About</a></li>
+				<li><a href="#skills">Skills</a></li>
+				<li><a href="#experience">Experience</a></li>
+				<li><a href="#blog">Blog</a></li>
+			</ul>
+		</nav>
+		<div class="logo">
+			<!-- Insert user's logo here -->
+		</div>
+		<div class="header-image">
+			<!-- Insert header image here -->
+		</div>
 	</header>
 	<main>
-		<h2>SIP Calculator</h2>
-		<form>
-			<label for="interestRate">Interest Rate:</label>
-			<input type="number" id="interestRate" name="interestRate" min="0" max="100" step="0.01" required><br><br>
-			<label for="timeYears">Time in Years:</label>
-			<input type="number" id="timeYears" name="timeYears" min="1" max="50" required><br><br>
-			<label for="principalAmount">Loan Principal Amount:</label>
-			<input type="number" id="principalAmount" name="principalAmount" min="1" max="10000000" required><br><br>
-			<button type="button" onclick="calculateSIP()">Calculate SIP</button>
-			<p id="sipOutput"></p>
-		</form>
-		
-		<h2>EMI Generator</h2>
-		<form>
-			<label for="interestRate">Interest Rate:</label>
-			<input type="number" id="interestRate" name="interestRate" min="0" max="100" step="0.01" required><br><br>
-			<label for="timeYears">Time in Years:</label>
-			<input type="number" id="timeYears" name="timeYears" min="1" max="50" required><br><br>
-			 <label for="principalAmount">Loan Principal Amount:</label>
-			<input type="number" id="principalAmount" name="principalAmount" min="1" max="10000000" required><br><br>
-			<button type="button" onclick="calculateEMI()">Calculate EMI</button>
-			<p id="emiOutput"></p>
-		</form>
-		
-		<script>
-			// Define function to calculate SIP
-			function calculateSIP() {
-				const interestRate = document.getElementById('interestRate').value;
-				const timeYears = document.getElementById('timeYears').value;
-				const principalAmount = document.getElementById('principalAmount').value;
-				const totalAmount = principalAmount * Math.pow((1 + interestRate / 100), timeYears);
-				const sipAmount = totalAmount / (timeYears * 12);
-				document.getElementById('sipOutput').innerHTML = 'SIP Amount: ' + sipAmount.toFixed(2);
-			}
-			
-			// Define function to calculate EMI
-			function calculateEMI() {
-				const interestRate = document.getElementById('interestRate').value;
-				const timeYears = document.getElementById('timeYears').value;
-				const principalAmount = document.getElementById('principalAmount').value;
-				const timeMonths = timeYears * 12;
-				const monthlyInterestRate = interestRate / (12 * 100);
-				const emiAmount = (principalAmount * monthlyInterestRate * Math.pow(1 + monthlyInterestRate, timeMonths)) / (Math.pow(1 + monthlyInterestRate, timeMonths) - 1);
-				document.getElementById('emiOutput').innerHTML = 'EMI Amount: ' + emiAmount.toFixed(2);
-			}
-		</script>
+		<section id="about">
+			<h2>About</h2>
+			<div class="about-image">
+				<!-- Insert user's picture here -->
+			</div>
+			<p>Write a brief introduction about yourself and your professional background.</p>
+		</section>
+		<section id="skills">
+			<h2>Skills</h2>
+			<ul>
+				<li>Skill 1</li>
+				<li>Skill 2</li>
+				<li>Skill 3</li>
+				<!-- Add more skills as necessary -->
+			</ul>
+		</section>
+		<section id="experience">
+			<h2>Experience</h2>
+			<ul>
+				<li>
+					<h3>Job Title</h3>
+					<p>Employer Name | Dates of Employment</p>
+					<ul>
+						<li>Responsibility 1</li>
+						<li>Responsibility 2</li>
+						<li>Responsibility 3</li>
+						<!-- Add more responsibilities as necessary -->
+					</ul>
+				</li>
+				<!-- Add more job experiences as necessary -->
+			</ul>
+		</section>
+		<section id="blog">
+			<h2>Blog</h2>
+			<!-- Add blog posts here -->
+		</section>
 	</main>
+	<footer>
+		<p>&copy; Year | User's Name</p>
+	</footer>
+	<script src="script.js"></script>
 </body>
 </html>
