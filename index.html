@@ -1,49 +1,59 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Laymn: Simplified Life</title>
-	<!-- Include GPT-3.5 script -->
-	<script src="https://cdn.openai.com/api/gpt-3.5.0.js"></script>
+	<title>Loan Calculator</title>
 </head>
 <body>
 	<header>
-		<h1>Creating Life Easy One Step at a Time</h1>
+		<h1>Loan Calculator</h1>
 	</header>
-	<nav>
-		<ul>
-			<li><a href="#">Home</a></li>
-			<li><a href="#">About</a></li>
-			<li><a href="#">Contact</a></li>
-		</ul>
-	</nav>
 	<main>
-		<article>
-			<header>
-				<h2>Article Title</h2>
-				<p>Written by: Author Name</p>
-			</header>
-			<p>Article content goes here.</p>
-			<!-- Add GPT functionality -->
-			<button onclick="generateText()">Generate Text</button>
-			<p id="output"></p>
-			<script>
-				// Define function to generate text using GPT-3.5
-				function generateText() {
-					// Initialize GPT-3.5 API key
-					const openai = new OpenAI('INSERT_API_KEY_HERE');
-					// Define prompt for GPT-3.5 to generate text from
-					const prompt = 'Write something based on this article';
-					// Call GPT-3.5 to generate text based on prompt
-					openai.complete(prompt).then(function(result) {
-						// Display generated text on webpage
-						document.getElementById('output').innerHTML = result.choices[0].text;
-					});
-				}
-			</script>
-		</article>
+		<h2>SIP Calculator</h2>
+		<form>
+			<label for="interestRate">Interest Rate:</label>
+			<input type="number" id="interestRate" name="interestRate" min="0" max="100" step="0.01" required><br><br>
+			<label for="timeYears">Time in Years:</label>
+			<input type="number" id="timeYears" name="timeYears" min="1" max="50" required><br><br>
+			<label for="principalAmount">Loan Principal Amount:</label>
+			<input type="number" id="principalAmount" name="principalAmount" min="1" max="10000000" required><br><br>
+			<button type="button" onclick="calculateSIP()">Calculate SIP</button>
+			<p id="sipOutput"></p>
+		</form>
+		
+		<h2>EMI Generator</h2>
+		<form>
+			<label for="interestRate">Interest Rate:</label>
+			<input type="number" id="interestRate" name="interestRate" min="0" max="100" step="0.01" required><br><br>
+			<label for="timeYears">Time in Years:</label>
+			<input type="number" id="timeYears" name="timeYears" min="1" max="50" required><br><br>
+			 <label for="principalAmount">Loan Principal Amount:</label>
+			<input type="number" id="principalAmount" name="principalAmount" min="1" max="10000000" required><br><br>
+			<button type="button" onclick="calculateEMI()">Calculate EMI</button>
+			<p id="emiOutput"></p>
+		</form>
+		
+		<script>
+			// Define function to calculate SIP
+			function calculateSIP() {
+				const interestRate = document.getElementById('interestRate').value;
+				const timeYears = document.getElementById('timeYears').value;
+				const principalAmount = document.getElementById('principalAmount').value;
+				const totalAmount = principalAmount * Math.pow((1 + interestRate / 100), timeYears);
+				const sipAmount = totalAmount / (timeYears * 12);
+				document.getElementById('sipOutput').innerHTML = 'SIP Amount: ' + sipAmount.toFixed(2);
+			}
+			
+			// Define function to calculate EMI
+			function calculateEMI() {
+				const interestRate = document.getElementById('interestRate').value;
+				const timeYears = document.getElementById('timeYears').value;
+				const principalAmount = document.getElementById('principalAmount').value;
+				const timeMonths = timeYears * 12;
+				const monthlyInterestRate = interestRate / (12 * 100);
+				const emiAmount = (principalAmount * monthlyInterestRate * Math.pow(1 + monthlyInterestRate, timeMonths)) / (Math.pow(1 + monthlyInterestRate, timeMonths) - 1);
+				document.getElementById('emiOutput').innerHTML = 'EMI Amount: ' + emiAmount.toFixed(2);
+			}
+		</script>
 	</main>
-	<footer>
-		<p>&copy; 2023 Laymn: Simplified Life</p>
-	</footer>
 </body>
 </html>
