@@ -1,43 +1,49 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="utf-8" />
-        <meta
-            name="viewport"
-            content="width=device-width,
-    initial-scale=1.0,shrink-to-fit"
-        />
-        <title>Todo App</title>
-        <link rel="icon" href="https://m-enes.github.io/todo-app/favicon.ico" type="image/x-icon"/>
-        <link
-            rel="stylesheet"
-            href="sources/bootstrap-4.5.2-dist/css/bootstrap.css"
-        />
-        <link rel="stylesheet" href="style.css" />
-    </head>
-
-    <body class="bg-light">
-        <div class="container">
-            <div class="header">
-                <h1 class="text-center display-1">Hi! This website is under contruction. Come back soon for a simpler Life. Thanks, Team Laymn</h1>
-            </div>
-            <div class="container paddingContainer">
-                <ul id="todolist"></ul>
-                <input type="text" id="todo-input" />
-                <button class="btn btn-primary" onclick="addTodo()">
-                    Add Todo
-                </button>
-                <button
-                    class="btn btn-danger"
-                    id="unshow-finished-todos"
-                    onclick="unshowFinishedTodos()"
-                >
-                    Unshow Finished Todos
-                </button>
-            </div>
-        </div>
-    </body>
-    <script src="sources/bootstrap-4.5.2-dist/js/jquery-3.5.1.js"></script>
-    <script src="sources/bootstrap-4.5.2-dist/js/bootstrap.js"></script>
-    <script src="script.js"></script>
+<head>
+	<title>Laymn: Simplified Life</title>
+	<!-- Include GPT-3.5 script -->
+	<script src="https://cdn.openai.com/api/gpt-3.5.0.js"></script>
+</head>
+<body>
+	<header>
+		<h1>Creating Life Easy One Step at a Time</h1>
+	</header>
+	<nav>
+		<ul>
+			<li><a href="#">Home</a></li>
+			<li><a href="#">About</a></li>
+			<li><a href="#">Contact</a></li>
+		</ul>
+	</nav>
+	<main>
+		<article>
+			<header>
+				<h2>Article Title</h2>
+				<p>Written by: Author Name</p>
+			</header>
+			<p>Article content goes here.</p>
+			<!-- Add GPT functionality -->
+			<button onclick="generateText()">Generate Text</button>
+			<p id="output"></p>
+			<script>
+				// Define function to generate text using GPT-3.5
+				function generateText() {
+					// Initialize GPT-3.5 API key
+					const openai = new OpenAI('INSERT_API_KEY_HERE');
+					// Define prompt for GPT-3.5 to generate text from
+					const prompt = 'Write something based on this article';
+					// Call GPT-3.5 to generate text based on prompt
+					openai.complete(prompt).then(function(result) {
+						// Display generated text on webpage
+						document.getElementById('output').innerHTML = result.choices[0].text;
+					});
+				}
+			</script>
+		</article>
+	</main>
+	<footer>
+		<p>&copy; 2023 Laymn: Simplified Life</p>
+	</footer>
+</body>
 </html>
